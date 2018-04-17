@@ -1,0 +1,8 @@
+// rename this file to 'environment.ts'
+
+import { Environment } from './environment.interface';
+
+export const ENV: Environment = {
+	MARVEL_API_PUB_KEY : '',
+	MARVEL_API_PVT_KEY : '',
+};
