@@ -8,13 +8,13 @@ import { MarvelProvider } from '../../providers/marvel/marvel';
 })
 export class HomePage {
 
-  charactersData : any;
+  characters : any;
   offset : number;
   nameInput:string;
 
   constructor(public navCtrl: NavController, private marvelProvider:MarvelProvider) {
     this.offset = 0;
-    this.charactersData = {results:[]};
+    this.characters = [];
   }
 
   ionViewWillEnter(){
@@ -24,7 +24,7 @@ export class HomePage {
   doInfinite(scroll){
     return this.marvelProvider.getCharacters(this.offset+20, this.nameInput).subscribe(
       (res)=>{
-        this.charactersData.results.push.apply(this.charactersData.results, res.data.results );
+        this.characters.push.apply(this.characters, res.data.results );
         this.offset += 20;
         scroll.complete();
       });
@@ -33,22 +33,22 @@ export class HomePage {
 
   search(ev){
     this.offset = 0;
-    this.charactersData = {results:[]};
+    this.characters = [];
     this.nameInput = ev.target.value;
     this.getData();
   }
 
   cancel(){
     this.offset = 0;
-    this.charactersData = {results:[]};
+    this.characters = [];
     this.getData();
   }
 
   getData(){
     return this.marvelProvider.getCharacters(this.offset, this.nameInput).subscribe(
       (res)=>{
-        this.charactersData.results.push.apply(this.charactersData.results, res.data.results );
-        console.log(this.charactersData, this.nameInput);
+        this.characters.push.apply(this.characters, res.data.results );
+        console.log(this.characters, this.nameInput);
       });
   }
 
