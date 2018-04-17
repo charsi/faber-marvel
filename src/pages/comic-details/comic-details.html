@@ -1,0 +1,44 @@
+<!--
+  Generated template for the ComicDetailsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{comic.name}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+    <div *ngIf="comic.details">
+        <ion-item>
+            <img src="{{comic.details.thumbnail.path}}.{{comic.details.thumbnail.extension}}">
+        </ion-item>
+         <ion-item text-wrap><p>{{comic.details.description?comic.details.description:'We don\\'t know much about '+comic.name}}</p>
+        </ion-item>
+      </div>
+    
+      <ion-list *ngIf="comic.details">
+        <button ion-item (click)="goToComicsList(character)">
+          <ion-icon name="contacts" item-start></ion-icon>
+          Characters
+          <ion-badge item-end>{{comic.details.characters.available}}</ion-badge>
+        </button>
+    
+        <ion-item *ngIf="comic.details.upc&&comic.details.upc!=''">
+           upc: {{comic.details.upc}}
+        </ion-item>
+
+        <ion-item *ngIf="comic.details.isbn&&comic.details.isbn!=''">
+          isbn: {{comic.details.isbn}}
+        </ion-item>
+    
+      </ion-list>
+      
+
+</ion-content>

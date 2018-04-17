@@ -22,20 +22,20 @@
       <ion-item text-wrap><p>{{character.description?character.description:'We don\\'t know much about '+character.name}}</p>
     </ion-item>
 
-    <ion-item>
+    <button ion-item (click)="goToComicsList(character)">
       <ion-icon name="book" item-start></ion-icon>
       Comics
       <ion-badge item-end>{{character.comics.available}}</ion-badge>
-    </ion-item>
+    </button>
 
     <ion-item>
-      <ion-icon name="book" item-start></ion-icon>
+      <ion-icon name="text" item-start></ion-icon>
       Stories
       <ion-badge item-end>{{character.stories.available}}</ion-badge>
     </ion-item>
 
     <ion-item>
-      <ion-icon name="book" item-start></ion-icon>
+      <ion-icon name="albums" item-start></ion-icon>
       Series
       <ion-badge item-end>{{character.series.available}}</ion-badge>
     </ion-item>

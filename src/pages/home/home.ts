@@ -55,7 +55,7 @@ export class HomePage {
   }
 
   goToCharacterDetail(character:any){
-    this.navCtrl.push(CharacterDetailsPage,{character:character})
+    this.navCtrl.push(CharacterDetailsPage,{character:character});
   }
 
 }

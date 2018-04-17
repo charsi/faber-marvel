@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { ComicsListPage } from '../comics-list/comics-list';
+import { ComicDetailsPage } from '../comic-details/comic-details';
 
 /**
- * Generated class for the CharacterDetailPage page.
+ * Generated class for the ComicsListPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -11,26 +11,21 @@ import { ComicsListPage } from '../comics-list/comics-list';
 
 @IonicPage()
 @Component({
-  selector: 'page-character-details',
-  templateUrl: 'character-details.html',
+  selector: 'page-comics-list',
+  templateUrl: 'comics-list.html',
 })
-export class CharacterDetailsPage {
+export class ComicsListPage {
 
-  character : any;
+  character : any; 
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.character= this.navParams.data.character;
   }
 
-  ionViewDidLoad() { 
+  ionViewDidLoad() {
   }
 
-  ionViewWillEnter(){
-    
+  goToComicDetail(comic){
+    this.navCtrl.push(ComicDetailsPage,{comic:comic});
   }
-
-  goToComicsList(character){
-    this.navCtrl.push(ComicsListPage,{character:character});
-  }
-
 }

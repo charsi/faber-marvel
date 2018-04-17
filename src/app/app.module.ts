@@ -8,6 +8,9 @@ import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { CharacterDetailsPage } from '../pages/character-details/character-details';
+import { SettingsPage } from '../pages/settings/settings';
+import { ComicsListPage } from '../pages/comics-list/comics-list';
+import { ComicDetailsPage } from '../pages/comic-details/comic-details';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -22,8 +25,10 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
     ContactPage,
     HomePage,
     TabsPage,
-    CharacterDetailsPage
-    //SettingsPage
+    CharacterDetailsPage,
+    SettingsPage,
+    ComicsListPage,
+    ComicDetailsPage
   ],
   imports: [
     BrowserModule,
@@ -37,8 +42,10 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
     ContactPage,
     HomePage,
     TabsPage,
-    CharacterDetailsPage
-    //SettingsPage
+    CharacterDetailsPage,
+    SettingsPage,
+    ComicsListPage,
+    ComicDetailsPage
   ],
   providers: [
     HttpClientModule,

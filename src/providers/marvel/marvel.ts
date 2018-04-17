@@ -45,16 +45,14 @@ export class MarvelProvider {
     return this.http.get(this.url+'characters', { params:params });
   }
 
-  getCharacterDetails(offset:number, startsWith?:string){
+  getComic(id:number){
     var ts : string = new Date().toString();
     var params : any = {
       ts : ts,
       apikey : this.apiPubKey,
-      hash: this.apiToken(ts),
-      offset: offset.toString()
+      hash: this.apiToken(ts)
     };
-    if(startsWith){params.nameStartsWith = startsWith;}
-    return this.http.get(this.url+'characters', { params:params });
+    return this.http.get(this.url+'comics/'+id, { params:params });
   }
 
 }
