@@ -32,14 +32,15 @@ export class MarvelProvider {
     return Md5.hashStr(ts+this.apiPvtKey+this.apiPubKey).toString();
   }
 
-  getCharacters(offset){
+
+  getCharacters(offset:number){
     var ts : string = new Date().toString();
-    return this.http.get(this.url+'characters',{ params:{
+    var params = {
       ts : ts,
       apikey : this.apiPubKey,
       hash: this.apiToken(ts),
-      offset:offset
-    }});
+      offset: offset.toString()
+    };
+    return this.http.get(this.url+'characters', { params:params });
   }
-
 }

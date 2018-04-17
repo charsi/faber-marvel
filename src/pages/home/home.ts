@@ -21,15 +21,17 @@ export class HomePage {
         this.charactersData = res.data;
         console.log(this.charactersData);
       });
-    
   }
   
   doInfinite(scroll){
+    
     this.marvelProvider.getCharacters(this.offset+20).subscribe(
       (res)=>{
         console.log(res);
         this.charactersData.results.push.apply(this.charactersData.results, res.data.results );
         console.log(this.charactersData);
+        this
+        this.offset += 20;
         scroll.complete();
       });
     
