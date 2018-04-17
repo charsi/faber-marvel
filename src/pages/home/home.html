@@ -11,7 +11,12 @@
 
 <ion-content padding>
   <ion-list *ngIf="characters">
-    <button ion-item  *ngFor="let character of characters" (click)="goToCharacterDetail(character)">{{character.name}}</button>
+    <button ion-item  *ngFor="let character of characters" (click)="goToCharacterDetail(character)">
+      <ion-thumbnail item-start>
+        <img *ngIf="character.thumbnail.available"  src="{{character.thumbnail.path}}.{{character.thumbnail.extension}}" >
+      </ion-thumbnail>
+      <h2>{{character.name}}</h2>
+    </button>
   </ion-list>
   <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
     <ion-infinite-scroll-content></ion-infinite-scroll-content>

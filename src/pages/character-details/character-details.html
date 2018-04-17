@@ -17,7 +17,7 @@
   <!-- <h2 *ngIf="character">{{character.name}}</h2> -->
   <ion-list>
     <ion-item>
-        <img src="{{character.thumbnail.path}}.{{character.thumbnail.extension}}">
+        <img *ngIf="character.thumbnail.available" src="{{character.thumbnail.path}}.{{character.thumbnail.extension}}">
     </ion-item>
       <ion-item text-wrap><p>{{character.description?character.description:'We don\\'t know much about '+character.name}}</p>
     </ion-item>

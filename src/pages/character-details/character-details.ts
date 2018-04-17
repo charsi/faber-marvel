@@ -19,7 +19,8 @@ export class CharacterDetailsPage {
   character : any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.character= this.navParams.data.character;
+    this.character = this.navParams.data.character;
+    console.log(this.character);
   }
 
   ionViewDidLoad() { 

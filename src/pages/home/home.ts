@@ -25,7 +25,8 @@ export class HomePage {
   doInfinite(scroll){
     return this.marvelProvider.getCharacters(this.offset+20, this.nameInput).subscribe(
       (res:any)=>{
-        this.characters.push.apply(this.characters, res.data.results );
+        var newCharacters = this.addImageInfo(res.data.results); 
+        this.characters.push.apply(this.characters, newCharacters );
         this.offset += 20;
         console.log(this.characters);   
         scroll.complete();
@@ -49,13 +50,29 @@ export class HomePage {
   getData(){
     return this.marvelProvider.getCharacters(this.offset, this.nameInput).subscribe(
       (res:any)=>{
-        this.characters.push.apply(this.characters, res.data.results );
+        var newCharacters = this.addImageInfo(res.data.results); 
+        this.characters.push.apply(this.characters, newCharacters );
         console.log(this.characters);
       });
   }
 
   goToCharacterDetail(character:any){
     this.navCtrl.push(CharacterDetailsPage,{character:character});
+  }
+
+  // checks if image is real
+  addImageInfo(characters){
+    var charsOut = [];
+    for (const character of characters){
+      var imgUrl = character.thumbnail.path;
+      if (imgUrl.split('/').pop()==='image_not_available'){
+        character.thumbnail.available = false;
+      } else {
+        character.thumbnail.available = true;
+      }
+      charsOut.push(character);
+    }
+    return charsOut;
   }
 
 }
