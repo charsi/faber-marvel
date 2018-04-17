@@ -33,14 +33,15 @@ export class MarvelProvider {
   }
 
 
-  getCharacters(offset:number){
+  getCharacters(offset:number, startsWith?:string){
     var ts : string = new Date().toString();
-    var params = {
+    var params : any = {
       ts : ts,
       apikey : this.apiPubKey,
       hash: this.apiToken(ts),
       offset: offset.toString()
     };
+    if(startsWith){params.nameStartsWith = startsWith;}
     return this.http.get(this.url+'characters', { params:params });
   }
 }

@@ -2,6 +2,11 @@
   <ion-navbar>
     <ion-title>Faber Marvel</ion-title>
   </ion-navbar>
+  <ion-searchbar
+  [showCancelButton]="shouldShowCancel"
+  (ionInput)="search($event)"
+  (ionCancel)="cancel()">
+</ion-searchbar>
 </ion-header>
 
 <ion-content padding>
