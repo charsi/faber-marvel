@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { MarvelProvider } from '../../providers/marvel/marvel';
+import { CharacterDetailsPage } from '../character-details/character-details';
 
 @Component({
   selector: 'page-home',
@@ -8,7 +9,7 @@ import { MarvelProvider } from '../../providers/marvel/marvel';
 })
 export class HomePage {
 
-  characters : any;
+  characters : any[];
   offset : number;
   nameInput:string;
 
@@ -23,9 +24,10 @@ export class HomePage {
   
   doInfinite(scroll){
     return this.marvelProvider.getCharacters(this.offset+20, this.nameInput).subscribe(
-      (res)=>{
+      (res:any)=>{
         this.characters.push.apply(this.characters, res.data.results );
         this.offset += 20;
+        console.log(this.characters);   
         scroll.complete();
       });
     
@@ -46,10 +48,14 @@ export class HomePage {
 
   getData(){
     return this.marvelProvider.getCharacters(this.offset, this.nameInput).subscribe(
-      (res)=>{
+      (res:any)=>{
         this.characters.push.apply(this.characters, res.data.results );
-        console.log(this.characters, this.nameInput);
+        console.log(this.characters);
       });
+  }
+
+  goToCharacterDetail(character:any){
+    this.navCtrl.push(CharacterDetailsPage,{character:character})
   }
 
 }

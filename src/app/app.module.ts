@@ -7,12 +7,13 @@ import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
-//import { SettingsPage } from '../pages/settings/settings';
+import { CharacterDetailsPage } from '../pages/character-details/character-details';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { MarvelProvider } from '../providers/marvel/marvel';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
+//import { CharacterDetailsPageModule } from '../pages/character-details/character-details.module';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
     ContactPage,
     HomePage,
     TabsPage,
+    CharacterDetailsPage
     //SettingsPage
   ],
   imports: [
@@ -35,6 +37,7 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
     ContactPage,
     HomePage,
     TabsPage,
+    CharacterDetailsPage
     //SettingsPage
   ],
   providers: [
