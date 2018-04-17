@@ -7,11 +7,12 @@ import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
-import {SettingsPage} from '../pages/settings/settings';
+//import { SettingsPage } from '../pages/settings/settings';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { MarvelProvider } from '../providers/marvel/marvel';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -20,11 +21,12 @@ import { MarvelProvider } from '../providers/marvel/marvel';
     ContactPage,
     HomePage,
     TabsPage,
-    SettingsPage
+    //SettingsPage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -33,7 +35,7 @@ import { MarvelProvider } from '../providers/marvel/marvel';
     ContactPage,
     HomePage,
     TabsPage,
-    SettingsPage
+    //SettingsPage
   ],
   providers: [
     StatusBar,
