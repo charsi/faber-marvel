@@ -30,14 +30,13 @@ export class ComicsListPage {
 
   doInfinite(scroll){
     return this.marvelProvider.getComicsWithCharacter(this.offset+20, this.character.id).subscribe(
-      (res:any)=>{
-        var newComics = res.data.results; 
-        this.character.comics.items.push.apply(this.character.comics.items, newComics );
-        this.offset += 20;
-        console.log(this.character);   
-        scroll.complete();
-      });
-    
+    (res:any)=>{
+      var newComics = res.data.results; 
+      this.character.comics.items.push.apply(this.character.comics.items, newComics );
+      this.offset += 20;
+      console.log(this.character);   
+      scroll.complete();
+    });
   }
 
   goToComicDetail(comic){
