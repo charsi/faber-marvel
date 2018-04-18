@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
+import { ComicDetailsPage } from '../comic-details/comic-details';
+import { CharacterDetailsPage } from '../character-details/character-details';
 
 /**
  * Generated class for the FavoritesPage page.
@@ -39,5 +41,14 @@ export class FavoritesPage {
       }
       console.log(val);
     });
-  } 
+  }
+  
+  goToCharacterDetail(character:any){
+    this.navCtrl.push(CharacterDetailsPage,{character:character});
+  }
+
+  goToComicDetail(comic){
+    this.navCtrl.push(ComicDetailsPage,{comic:comic});
+  }
+
 }
