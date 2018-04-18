@@ -20,10 +20,12 @@ export class ComicDetailsPage {
   comic : any;
   comicCharacters : any;
   characterOffset:number;
+  favComic :boolean;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private marvelProvider:MarvelProvider, private storage:Storage) {
     this.comic = this.navParams.data.comic;
     this.characterOffset =0;
+    this.favComic = false;
     
   }
 
@@ -35,6 +37,7 @@ export class ComicDetailsPage {
     var id = this.comic.resourceURI.split('/').pop();
     this.getData(id);
     this.getCharacterdData(id);
+    this.checkFavorites();
   }
 
 
@@ -56,9 +59,37 @@ export class ComicDetailsPage {
       }else{
         this.storage.set('comics',JSON.stringify([this.comic]));
       }
-      console.log(val);
+      this.checkFavorites();
     });
   }
+
+
+  removeComicFromFavorites(){
+    this.storage.get('comics').then((val)=>{
+      if (val!= null){
+        var oldComicssStorage : any[] = JSON.parse(val);
+        var newComicsStorage = oldComicssStorage.filter(comic => comic.id != this.comic.id);
+        this.storage.set('comics',JSON.stringify(newComicsStorage));
+        this.checkFavorites();
+      }
+    });
+  }
+
+  checkFavorites(){
+    //console.log('fav ',this.favComic);
+    this.favComic = false;
+    this.storage.get('comics').then((val)=>{
+      if (val!= null){
+        var comicsInStorage : any[] = JSON.parse(val);
+        for (const comic of comicsInStorage){
+          if (comic.id===this.comic.id){
+            this.favComic = true;
+          }
+        }
+      }
+    });
+  }
+
 
   getCharacterdData(id:number){
     return this.marvelProvider.getCharactersInComic(this.characterOffset, id).subscribe(
@@ -67,5 +98,7 @@ export class ComicDetailsPage {
       console.log(this.comicCharacters);
     });
   }
+
+
 
 }

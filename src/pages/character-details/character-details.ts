@@ -18,17 +18,19 @@ import { Storage } from '@ionic/storage';
 export class CharacterDetailsPage {
 
   character : any;
+  favCharacter : boolean ;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private storage:Storage) {
     this.character = this.navParams.data.character;
     console.log(this.character);
+    this.favCharacter = false;
   }
 
   ionViewDidLoad() { 
   }
 
   ionViewWillEnter(){
-    
+    this.checkFavorites();
   }
 
   goToComicsList(character){
@@ -44,7 +46,33 @@ export class CharacterDetailsPage {
       }else{
         this.storage.set('characters',JSON.stringify([this.character]));
       }
-      console.log(val);
+      this.checkFavorites();
+    });
+  }
+
+  removeCharacterFromFavorites(){
+    this.storage.get('characters').then((val)=>{
+      if (val!= null){
+        var oldCharactersStorage : any[] = JSON.parse(val);
+        var newCharacterStorage = oldCharactersStorage.filter(character => character.id != this.character.id);
+        this.storage.set('characters',JSON.stringify(newCharacterStorage));
+        this.checkFavorites();
+      }
+      
+    });
+  }
+
+  checkFavorites(){
+    this.favCharacter = false;
+    this.storage.get('characters').then((val)=>{
+      if (val!= null){
+        var charactersInStorage : any[] = JSON.parse(val);
+        for (const character of charactersInStorage){
+          if (character.id===this.character.id){
+            this.favCharacter = true;
+          }
+        }
+      }
     });
   }
 

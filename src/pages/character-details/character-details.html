@@ -16,7 +16,8 @@
 <ion-content padding>
   <!-- <h2 *ngIf="character">{{character.name}}</h2> -->
   <ion-fab right top>
-      <button ion-fab color="light" (click)="addCharacterToFavorites()"><ion-icon name="heart-outline"></ion-icon></button>
+      <button *ngIf="!favCharacter" ion-fab color="light" (click)="addCharacterToFavorites()"><ion-icon name="heart-outline"></ion-icon></button>
+      <button *ngIf="favCharacter" ion-fab color="primary" (click)="removeCharacterFromFavorites()"><ion-icon name="heart"></ion-icon></button>
     </ion-fab>
   <ion-list>
     <ion-item>
