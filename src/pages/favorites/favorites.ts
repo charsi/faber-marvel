@@ -32,14 +32,14 @@ export class FavoritesPage {
       if (val!= null){
         this.characters = JSON.parse(val);
       }
-      console.log(val);
+      console.log(JSON.parse(val));
     });
 
     this.storage.get('comics').then((val)=>{
       if (val!= null){
         this.comics = JSON.parse(val);
       }
-      console.log(val);
+      console.log(JSON.parse(val));
     });
   }
   
