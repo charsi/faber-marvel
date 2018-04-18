@@ -11,7 +11,7 @@ import { FavoritesPage } from '../favorites/favorites';
 export class TabsPage {
 
   tab1Root = HomePage;
-
+  welcomeVisible : boolean= true;
 
   constructor(public navCtrl: NavController) {
 
@@ -20,4 +20,9 @@ export class TabsPage {
   goToFavorites(){
     this.navCtrl.push(FavoritesPage);
   }
+
+  hideWelcome(){
+    this.welcomeVisible = false;
+  }
+
 }
