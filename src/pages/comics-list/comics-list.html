@@ -16,7 +16,10 @@
 <ion-content padding>
 
     <ion-list >
-        <button ion-item  *ngFor="let comic of character.comics.items" (click)="goToComicDetail(comic)">{{comic.name}}</button>
-      </ion-list>
+        <button ion-item  *ngFor="let comic of character.comics.items" (click)="goToComicDetail(comic)">{{comic.name?comic.name:comic.title}}</button>
+    </ion-list>
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
 
 </ion-content>

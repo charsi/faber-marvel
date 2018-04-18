@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ComicDetailsPage } from '../comic-details/comic-details';
+import { MarvelProvider } from '../../providers/marvel/marvel';
 
 /**
  * Generated class for the ComicsListPage page.
@@ -16,13 +17,27 @@ import { ComicDetailsPage } from '../comic-details/comic-details';
 })
 export class ComicsListPage {
 
-  character : any; 
+  character : any;
+  offset : number; 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private marvelProvider:MarvelProvider) {
     this.character= this.navParams.data.character;
+    this.offset = 0;
   }
 
   ionViewDidLoad() {
+  }
+
+  doInfinite(scroll){
+    return this.marvelProvider.getComicsWithCharacter(this.offset+20, this.character.id).subscribe(
+      (res:any)=>{
+        var newComics = res.data.results; 
+        this.character.comics.items.push.apply(this.character.comics.items, newComics );
+        this.offset += 20;
+        console.log(this.character);   
+        scroll.complete();
+      });
+    
   }
 
   goToComicDetail(comic){
