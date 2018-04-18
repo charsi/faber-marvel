@@ -11,11 +11,13 @@ import { CharacterDetailsPage } from '../pages/character-details/character-detai
 import { SettingsPage } from '../pages/settings/settings';
 import { ComicsListPage } from '../pages/comics-list/comics-list';
 import { ComicDetailsPage } from '../pages/comic-details/comic-details';
+import { FavoritesPage } from '../pages/favorites/favorites';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { MarvelProvider } from '../providers/marvel/marvel';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
+import {IonicStorageModule} from '@ionic/storage';
 //import { CharacterDetailsPageModule } from '../pages/character-details/character-details.module';
 
 @NgModule({
@@ -28,12 +30,14 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
     CharacterDetailsPage,
     SettingsPage,
     ComicsListPage,
-    ComicDetailsPage
+    ComicDetailsPage,
+    FavoritesPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    HttpClientModule
+    HttpClientModule,
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -45,7 +49,8 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
     CharacterDetailsPage,
     SettingsPage,
     ComicsListPage,
-    ComicDetailsPage
+    ComicDetailsPage,
+    FavoritesPage
   ],
   providers: [
     HttpClientModule,
@@ -53,6 +58,7 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     MarvelProvider
+    
   ]
 })
 export class AppModule {}

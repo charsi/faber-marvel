@@ -15,6 +15,9 @@
 
 <ion-content padding>
   <!-- <h2 *ngIf="character">{{character.name}}</h2> -->
+  <ion-fab right top>
+      <button ion-fab color="light" (click)="addCharacterToFavorites()"><ion-icon name="heart-outline"></ion-icon></button>
+    </ion-fab>
   <ion-list>
     <ion-item>
         <img *ngIf="character.thumbnail.available" src="{{character.thumbnail.path}}.{{character.thumbnail.extension}}">

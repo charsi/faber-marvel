@@ -1,5 +1,18 @@
-<ion-tabs>
+<!-- <ion-tabs>
   <ion-tab [root]="tab1Root" tabTitle="Home" tabIcon="home"></ion-tab>
   <ion-tab [root]="tab2Root" tabTitle="About" tabIcon="information-circle"></ion-tab>
   <ion-tab [root]="tab3Root" tabTitle="Settings" tabIcon="cog"></ion-tab>
-</ion-tabs>
+</ion-tabs> -->
+
+<ion-menu [content]="content">
+
+    <ion-content padding>
+      <ion-list>
+        <button ion-item (click)="goToFavorites()">
+          Favorites
+        </button>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+
+<ion-nav id="nav" #content [root]="tab1Root"></ion-nav>

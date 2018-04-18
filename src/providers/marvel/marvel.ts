@@ -22,6 +22,7 @@ export class MarvelProvider {
     this.apiPubKey = ENV.MARVEL_API_PUB_KEY;
     this.apiPvtKey = ENV.MARVEL_API_PVT_KEY;
     this.url = 'https://gateway.marvel.com:443/v1/public/';
+    //this.url = 'https://gateway.marvel.com/';
     
     console.log(this.apiPubKey);
     console.log(this.apiPvtKey);

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { MarvelProvider } from '../../providers/marvel/marvel';
+import { Storage } from '@ionic/storage';
 
 /**
  * Generated class for the ComicDetailsPage page.
@@ -18,7 +19,7 @@ export class ComicDetailsPage {
 
   comic : any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private marvelProvider:MarvelProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private marvelProvider:MarvelProvider, private storage:Storage) {
     this.comic = this.navParams.data.comic;
     
   }
@@ -41,4 +42,18 @@ export class ComicDetailsPage {
         console.log(this.comic);
       });
   }
+
+  addComicToFavorites(){
+    this.storage.get('comics').then((val)=>{
+      if (val!= null){
+        var comicsStorage : any[] = JSON.parse(val);
+        comicsStorage.push(this.comic);
+        this.storage.set('comics',JSON.stringify(comicsStorage));
+      }else{
+        this.storage.set('comics',JSON.stringify([this.comic]));
+      }
+      console.log(val);
+    });
+  }
+
 }
