@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { MarvelProvider } from '../../providers/marvel/marvel';
 import { CharacterDetailsPage } from '../character-details/character-details';
+import { SplashScreen } from '@ionic-native/splash-screen';
 
 @Component({
   selector: 'page-home',
@@ -13,7 +14,8 @@ export class HomePage {
   offset : number;
   nameInput:string;
 
-  constructor(public navCtrl: NavController, private marvelProvider:MarvelProvider) {
+  constructor(public navCtrl: NavController, private marvelProvider:MarvelProvider, private splashScreen: SplashScreen) {
+    this.splashScreen.show();
     this.offset = 0;
     this.characters = [];
   }
