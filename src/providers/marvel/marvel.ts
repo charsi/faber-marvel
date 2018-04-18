@@ -67,4 +67,15 @@ export class MarvelProvider {
     return this.http.get(this.url+'comics/'+id, { params:params });
   }
 
+  getCharactersInComic(offset:number, id:number){
+    var ts : string = new Date().toString();
+    var params : any = {
+      ts : ts,
+      apikey : this.apiPubKey,
+      hash: this.apiToken(ts),
+      offset: offset.toString()
+    };
+    return this.http.get(this.url+'comics/'+id+'/characters', { params:params });
+  }
+
 }

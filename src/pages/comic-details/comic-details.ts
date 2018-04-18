@@ -18,9 +18,12 @@ import { Storage } from '@ionic/storage';
 export class ComicDetailsPage {
 
   comic : any;
+  comicCharacters : any;
+  characterOffset:number;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private marvelProvider:MarvelProvider, private storage:Storage) {
     this.comic = this.navParams.data.comic;
+    this.characterOffset =0;
     
   }
 
@@ -31,16 +34,17 @@ export class ComicDetailsPage {
   ionViewWillEnter(){
     var id = this.comic.resourceURI.split('/').pop();
     this.getData(id);
+    this.getCharacterdData(id);
   }
 
 
   getData(id:number){
     return this.marvelProvider.getComic(id).subscribe(
-      (res:any)=>{
-        this.comic.details =  res.data.results[0];
-        this.comic.id = id;
-        console.log(this.comic);
-      });
+    (res:any)=>{
+      this.comic.details =  res.data.results[0];
+      this.comic.id = id;
+      console.log(this.comic);
+    });
   }
 
   addComicToFavorites(){
@@ -53,6 +57,14 @@ export class ComicDetailsPage {
         this.storage.set('comics',JSON.stringify([this.comic]));
       }
       console.log(val);
+    });
+  }
+
+  getCharacterdData(id:number){
+    return this.marvelProvider.getCharactersInComic(this.characterOffset, id).subscribe(
+    (res:any)=>{
+      this.comicCharacters =  res.data.results;
+      console.log(this.comicCharacters);
     });
   }
 

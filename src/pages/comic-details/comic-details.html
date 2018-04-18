@@ -31,11 +31,11 @@
           Format: {{comic.details.format}}
         </ion-item>
     
-        <ion-item *ngIf="comic.details.upc ">
+        <ion-item *ngIf="comic.details.upc">
            UPC: {{comic.details.upc}}
         </ion-item>
 
-        <ion-item *ngIf="comic.details.isbn ">
+        <ion-item *ngIf="comic.details.isbn">
           ISBN: {{comic.details.isbn}}
         </ion-item>
 
@@ -43,11 +43,16 @@
           Creators: <span *ngFor="let creator of comic.details.creators.items; let isLast=last">{{creator.name}}{{isLast ? '' : ', '}} </span>
         </ion-item>
 
-        <button ion-item (click)="goToComicsList(character)">
+        <ion-item *ngIf="comicCharacters">
           <ion-icon name="contacts" item-start></ion-icon>
           Characters
           <ion-badge item-end>{{comic.details.characters.available}}</ion-badge>
-        </button>
+        </ion-item>
+        <ion-row *ngIf="comicCharacters"  >
+          <ion-thumbnail width="30" *ngFor="let character of comicCharacters">
+            <img width="80" height="80" src="{{character.thumbnail.path}}.{{character.thumbnail.extension}}">
+          </ion-thumbnail>
+        </ion-row>
     
       </ion-list>
       
